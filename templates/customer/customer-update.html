@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+{%block section%}
+<main class="h-full pb-16 overflow-y-auto">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container px-6 mx-auto grid">
+      <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Update Customer Details
+      </h2>
+
+      <!-- Combined Personal and Address Information -->
+      <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+          Personal & Address Information
+        </h4>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- First Name Field -->
+          <label class="block text-sm font-medium">
+            <span class="text-gray-700 dark:text-gray-400">First Name</span><span class="text-red-600">*</span>
+            {{ form.first_name }}
+          </label>
+
+          <!-- Last Name Field -->
+          <label class="block text-sm font-medium mt-4">
+            <span class="text-gray-700 dark:text-gray-400">Last Name</span><span class="text-red-600">*</span>
+            {{ form.last_name }}
+          </label>
+
+          <!-- Email Field -->
+          <label class="block text-sm font-medium mt-4">
+            <span class="text-gray-700 dark:text-gray-400">Email</span><span class="text-red-600">*</span>
+            {{ form.email }}
+          </label>
+
+          <!-- Contact Number Field -->
+          <label class="block text-sm font-medium mt-4">
+            <span class="text-gray-700 dark:text-gray-400">Contact Number</span><span class="text-red-600">*</span>
+            {{ form.contact_number }}
+          </label>
+
+          <!-- Address Field -->
+          <label class="block text-sm font-medium mt-4">
+            <span class="text-gray-700 dark:text-gray-400">Address</span><span class="text-red-600">*</span>
+            {{ form.address }}
+          </label>
+
+          <!-- City Field -->
+          <label class="block text-sm font-medium mt-4">
+            <span class="text-gray-700 dark:text-gray-400">City</span><span class="text-red-600">*</span>
+            {{ form.city }}
+          </label>
+
+          <!-- Pincode Field -->
+          <label class="block text-sm font-medium mt-4">
+            <span class="text-gray-700 dark:text-gray-400">Pincode</span><span class="text-red-600">*</span>
+            {{ form.pincode }}
+          </label>
+          {% if form.pincode.errors %}
+          <span class="text-xs text-red-600 dark:text-red-400">
+            {{ form.pincode.errors }}
+          </span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end">
+        <button type="submit" class="px-5 py-3 my-6 font-medium leading-5 text-black transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+          Update
+        </button>
+      </div>
+    </div>
+  </form>
+</main>
+{%endblock%}

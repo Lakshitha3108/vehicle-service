@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+
+{%block section%}
+ <main class="min-h-screen pb-32 overflow-y-auto">
+    <div class="container mx-auto px-4 py-8"> 
+        <div class="bg-white rounded-lg shadow-md p-6 mb-16">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4">Customer Details</h2>
+            <p class=mt-2><strong>Full Name:</strong> {{ customer.profile.first_name }} {{ customer.profile.last_name }}</p>
+            <p><strong>Username:</strong> {{ customer.profile.username }}</p>
+            <p><strong>Email:</strong> {{ customer.profile.email }}</p>
+            <p><strong>Contact Number:</strong> {{ customer.contact_number }}</p>
+            <p><strong>Address:</strong> {{ customer.address }}</p>
+            <p><strong>City:</strong> {{ customer.city }}</p>
+            <p><strong>Pincode:</strong> {{ customer.pincode }}</p> 
+           
+
+            <a href="{% url 'customer-list' %}" class="text-red-600 hover:underline mt-4 inline-block">Back</a>
+        </div>
+    </div>
+</main>
+{%endblock%}
