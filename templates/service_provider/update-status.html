@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block section%}
+<div class="container mt-5">
+    <h2>Update Booking Status</h2>
+    
+    <p><strong>Customer:</strong> {{ booking.customer.first_name }} {{ booking.customer.last_name }}</p>
+    <p><strong>Vehicle Model:</strong> {{ booking.vehicle_model }}</p>
+    <p><strong>Service Type:</strong> {{ booking.get_service_type_display }}</p>
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="status">Select Status:</label>
+            <select name="status" id="status" class="form-control">
+                {% for value, label in status_choices %}
+                    <option value="{{ value }}" {% if booking.status == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Update</button>
+        <a href="{% url 'service-provider-dashboard' %}" class="btn btn-secondary mt-3">Cancel</a>
+    </form>
+</div>
+{%endblock%}

@@ -83,6 +83,9 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <div class="forgot-password">
+            <a href="{% url 'password_reset' %}" class="btn btn-primary">Forgot Password?</a>
+        </div>
         <div class="footer-text">
             Don't have an account? <a href="{% url 'customer-register' %}">Sign Up</a>
         </div>

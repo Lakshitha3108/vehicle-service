@@ -13,6 +13,8 @@ class RoleChoices(models.TextChoices):
     
 class Profile(AbstractUser):
 
+    
+    email = models.EmailField(unique=True)
     role = models.CharField(max_length=30,choices=RoleChoices.choices)
 
     def __str__(self):

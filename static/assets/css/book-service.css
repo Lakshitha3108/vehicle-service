@@ -1,0 +1,108 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffe5e5, #ffffff);
+    margin: 0;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 520px;
+    background-color: #fff;
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(255, 0, 0, 0.1);
+    border-top: 6px solid #e60000;
+    border-bottom: 6px solid #e60000;
+    transition: box-shadow 0.3s ease;
+    position: relative;  /* ✅ Ensures form stays above the background layer */
+    z-index: 1;
+}
+
+
+
+.form-container {
+    width: 100%;
+    max-width: 520px;
+    background-color: #fff;
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(255, 0, 0, 0.1);
+    border-top: 6px solid #e60000;
+    border-bottom: 6px solid #e60000;
+    transition: box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    box-shadow: 0 14px 30px rgba(255, 0, 0, 0.2);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #e60000;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #555;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid #f2f2f2;
+    font-size: 15px;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #e60000;
+    box-shadow: 0 0 6px rgba(255, 0, 0, 0.25);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.error {
+    color: #e60000;
+    font-size: 14px;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(to right, #ff4d4d, #cc0000);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(to right, #cc0000, #ff1a1a);
+    transform: translateY(-2px);
+}

@@ -1,4 +1,5 @@
-# @method_decorator(permission_roles(roles=['Admin','Sales']))
+
+
 from django.shortcuts import redirect,render
 
 def permission_roles(roles):
@@ -13,7 +14,7 @@ def permission_roles(roles):
 
            else:
                 
-                return render('errorpages/error-403.html')  
+                return render(request,'errorpages/error-403.html')  
 
        return wrapper    
 

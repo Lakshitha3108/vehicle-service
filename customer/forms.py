@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from customer.models import Customer
+from .models import ServiceBooking
+from common.choices import ServiceTypeChoices
 
 Profile = get_user_model()
 
@@ -86,7 +88,8 @@ class CustomerRegisterForm(forms.ModelForm):
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
         pincode = cleaned_data.get("pincode")
-
+        vehicle_number = cleaned_data.get("vehicle_number")
+        
         if Profile.objects.filter(email=email).exists():
             self.add_error('email', 'Email is already registered. Please choose another.')
 
@@ -95,6 +98,8 @@ class CustomerRegisterForm(forms.ModelForm):
 
         if password and confirm_password and password != confirm_password:
             self.add_error('confirm_password', 'Passwords do not match.')
+       
+    
 
         return cleaned_data
     
@@ -115,6 +120,44 @@ class CustomerRegisterForm(forms.ModelForm):
             if field_name != 'confirm_password':
               field.widget.attrs['required'] = 'required'
 
-  
+class ServiceBookingForm(forms.ModelForm):
+    
+    class Meta:
+        model = ServiceBooking
+        fields = ['vehicle_model', 'service_type', 'preferred_date', 'description','vehicle_number']
+        widgets = {
+            'vehicle_model': forms.TextInput(attrs={
+                'class': 'form-input', 'placeholder': 'Enter vehicle model'
+            }),
+             'vehicle_number': forms.TextInput(attrs={  
+                'class': 'form-input', 'placeholder': 'Enter vehicle number'
+            }),
+
+            'service_type': forms.Select(attrs={
+                'class': 'form-select'
+            }),
+            'preferred_date': forms.DateInput(attrs={
+                'type': 'date', 'class': 'form-input'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-textarea', 'rows': 3, 'placeholder': 'Additional notes (optional)'
+            }),
+        }          
+
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        vehicle_number = cleaned_data.get("vehicle_number")
+        
+        # Validation for vehicle number
+        if vehicle_number:
+            import re
+            pattern = r'^KL\d{2}[A-Z]{1,2}\d{4}$'
+            formatted_number = vehicle_number.replace(" ", "").upper()
+            
+            if not re.match(pattern, formatted_number):
+                self.add_error('vehicle_number', 'Enter a valid vehicle number.')
+        
+        return cleaned_data
 
    

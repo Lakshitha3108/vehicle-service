@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block section %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Service Payments</h2>
+
+  <div class="card shadow-sm">
+    <div class="card-body p-4">
+      <table class="table table-hover align-middle">
+        <thead class="table-primary">
+          <tr>
+            <th>Customer</th>
+            <th>Vehicle</th>
+            <th>Service Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Paid At</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for payment in payments %}
+          <tr>
+            <td>{{ payment.service.customer.first_name }} {{ payment.service.customer.last_name }}</td>
+            <td>{{ payment.service.vehicle_model }}</td>
+            <td>{{ payment.service.service_type|lower|title }}</td>
+            <td><span class="fw-bold text-success">₹{{ payment.amount }}</span></td>
+            <td>
+              {% if payment.status == 'Pending' %}
+              <span class="badge bg-warning text-dark">Pending</span>
+              {% elif payment.status == 'Success' %}
+              <span class="badge bg-success">Success</span>
+              {% else %}
+              <span class="badge bg-danger">Failed</span>
+              {% endif %}
+            </td>
+            <td>{{ payment.paid_at|date:"d M Y, H:i" }}</td>
+            <td>
+              <a href="{% url 'payments:payment-details' payment.service.id %}" class="btn btn-sm btn-primary">View</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center">No Payments Found</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

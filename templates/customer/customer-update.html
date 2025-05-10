@@ -1,5 +1,6 @@
-{%extends 'base.html'%}
-{%block section%}
+{% extends 'base.html' %}
+
+{% block section %}
 <main class="h-full pb-16 overflow-y-auto">
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -7,6 +8,17 @@
       <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         Update Customer Details
       </h2>
+
+      <!-- Form Errors (if any) -->
+      {% if form.non_field_errors %}
+        <div class="mb-4">
+          <ul class="text-sm text-red-600 dark:text-red-400">
+            {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
 
       <!-- Combined Personal and Address Information -->
       <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -19,48 +31,64 @@
           <label class="block text-sm font-medium">
             <span class="text-gray-700 dark:text-gray-400">First Name</span><span class="text-red-600">*</span>
             {{ form.first_name }}
+            {% if form.first_name.errors %}
+              <span class="text-xs text-red-600 dark:text-red-400">{{ form.first_name.errors }}</span>
+            {% endif %}
           </label>
 
           <!-- Last Name Field -->
           <label class="block text-sm font-medium mt-4">
             <span class="text-gray-700 dark:text-gray-400">Last Name</span><span class="text-red-600">*</span>
             {{ form.last_name }}
+            {% if form.last_name.errors %}
+              <span class="text-xs text-red-600 dark:text-red-400">{{ form.last_name.errors }}</span>
+            {% endif %}
           </label>
 
           <!-- Email Field -->
           <label class="block text-sm font-medium mt-4">
             <span class="text-gray-700 dark:text-gray-400">Email</span><span class="text-red-600">*</span>
             {{ form.email }}
+            {% if form.email.errors %}
+              <span class="text-xs text-red-600 dark:text-red-400">{{ form.email.errors }}</span>
+            {% endif %}
           </label>
 
           <!-- Contact Number Field -->
           <label class="block text-sm font-medium mt-4">
             <span class="text-gray-700 dark:text-gray-400">Contact Number</span><span class="text-red-600">*</span>
             {{ form.contact_number }}
+            {% if form.contact_number.errors %}
+              <span class="text-xs text-red-600 dark:text-red-400">{{ form.contact_number.errors }}</span>
+            {% endif %}
           </label>
 
           <!-- Address Field -->
           <label class="block text-sm font-medium mt-4">
             <span class="text-gray-700 dark:text-gray-400">Address</span><span class="text-red-600">*</span>
             {{ form.address }}
+            {% if form.address.errors %}
+              <span class="text-xs text-red-600 dark:text-red-400">{{ form.address.errors }}</span>
+            {% endif %}
           </label>
 
           <!-- City Field -->
           <label class="block text-sm font-medium mt-4">
             <span class="text-gray-700 dark:text-gray-400">City</span><span class="text-red-600">*</span>
             {{ form.city }}
+            {% if form.city.errors %}
+              <span class="text-xs text-red-600 dark:text-red-400">{{ form.city.errors }}</span>
+            {% endif %}
           </label>
 
           <!-- Pincode Field -->
           <label class="block text-sm font-medium mt-4">
             <span class="text-gray-700 dark:text-gray-400">Pincode</span><span class="text-red-600">*</span>
             {{ form.pincode }}
+            {% if form.pincode.errors %}
+              <span class="text-xs text-red-600 dark:text-red-400">{{ form.pincode.errors }}</span>
+            {% endif %}
           </label>
-          {% if form.pincode.errors %}
-          <span class="text-xs text-red-600 dark:text-red-400">
-            {{ form.pincode.errors }}
-          </span>
-          {% endif %}
         </div>
       </div>
 
@@ -72,4 +100,4 @@
     </div>
   </form>
 </main>
-{%endblock%}
+{% endblock %}

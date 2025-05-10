@@ -1,0 +1,54 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ RZP_CLIENT_ID }}",  // Razorpay Public Key
+        "amount": "{{ amount }}",      // Amount in paisa (e.g. ₹100 = 10000)
+        "currency": "INR",
+        "name": "Vehicle Service Management",
+        "description": "Payment for vehicle service",
+        "order_id": "{{ order_id }}",  // Razorpay Order ID created from backend
+        "handler": function (response) {
+            // Create form dynamically for POST submission
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "{% url 'payments:verify-payment' %}";  // Your payment verification URL (adjust namespace if needed)
+
+            // CSRF Token
+            var csrfToken = '{{ csrf_token }}';
+            var csrfInput = document.createElement("input");
+            csrfInput.type = "hidden";
+            csrfInput.name = "csrfmiddlewaretoken";
+            csrfInput.value = csrfToken;
+            form.appendChild(csrfInput);
+
+            // Razorpay response fields
+            ['razorpay_order_id', 'razorpay_payment_id', 'razorpay_signature'].forEach(function(key) {
+                var input = document.createElement("input");
+                input.type = "hidden";
+                input.name = key;
+                input.value = response[key];
+                form.appendChild(input);
+            });
+
+            // Optional: add booking_id if you're passing it
+            var bookingInput = document.createElement("input");
+            bookingInput.type = "hidden";
+            bookingInput.name = "booking_id";
+            bookingInput.value = "{{ booking_id }}";
+            form.appendChild(bookingInput);
+
+            document.body.appendChild(form);
+            form.submit();
+        },
+        "theme": {
+            "color": "#0f172a"  // Deep blue to match CarServ dashboard
+        },
+        "prefill": {
+            "name": "{{ customer_name }}",
+            "email": "{{ customer_email }}"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+</script>

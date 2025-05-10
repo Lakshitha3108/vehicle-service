@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Vehicle Service</title>
+    <link rel="stylesheet" href="{% static 'assets/css/book-service.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Book a Vehicle Service</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+            <button type="submit" class="submit-btn">Book Service →</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{%load service_provider_tags%}
+
+{% block section %}
+<div class="container mt-5">
+    <h2>Welcome, {{ provider.user.first_name }}</h2>
+
+    <h4 class="mt-4">Assigned Customers</h4>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>City</th>
+                <th>Pincode</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in assigned_customers %}
+            <tr>
+                <td>{{ customer.profile.first_name }} {{ customer.profile.last_name }}</td>
+                <td>{{ customer.contact_number }}</td>
+                <td>{{ customer.city }}</td>
+                <td>{{ customer.pincode }}</td>
+                <td>
+                    {% customer_booking_action customer.profile as booking_action %}
+                    {{ booking_action|safe }}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No customers assigned yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{%endblock%}

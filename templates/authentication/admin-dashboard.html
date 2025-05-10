@@ -7,7 +7,10 @@
     <div class="card p-4 shadow mt-4">
         <a href="{% url 'customer-list' %}" class="btn btn-info mb-2">View Customers</a><br>
         <a href="{% url 'customer-register' %}" class="btn btn-success mb-2">Register New Customer</a><br>
-        <a href="{% url 'assign-service' %}" class="btn btn-primary">Assign Service Providers</a>
+        <a href="{% url 'assign-service' %}" class="btn btn-primary  mb-2">Assign Service Providers</a><br>
+        <a href="{% url 'payments:payment_list' %}" class="btn btn-warning  mb-2">View Service Payments</a><br>
+        
+
     </div>
 </div>
 {%endblock%}

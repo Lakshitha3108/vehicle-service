@@ -13,11 +13,11 @@ from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 class DashboardView(View):
-
-    def get(self,request,*args,**kwargs):
+      def get(self,request,*args,**kwargs):
 
 
         return render(request, "customer/dashboard.html")
+
     
 class AdminDashboardView(View):
 
@@ -29,7 +29,6 @@ class AdminDashboardView(View):
         
     
 
-    
 
 class LoginView(View):
 
@@ -70,11 +69,11 @@ class LoginView(View):
                 
                 elif role in ['Customer']:
 
-                    return redirect('customer_dashboard')
+                    return redirect('customer-dashboard')
                 
-                elif role in ['service_provider']:
+                elif role in ['Service Provider']:
 
-                    return redirect('service_provider_dashboard')
+                    return redirect('service-provider-dashboard')
             
         error = 'user does not exist'                # here return used so we can use this method instead of using else if condition does not work it will automatically execute the next lenes
         

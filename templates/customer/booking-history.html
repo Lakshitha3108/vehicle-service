@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{%block section%}
+<div class="p-4">
+    <h2 class="text-xl font-semibold mb-4">Service Booking History</h2>
+    {%if bookings%}
+    <div class="overflow-x-auto">
+        <table class="table-auto w-full border-collapse border border-gray-200">
+            <thead>
+                <tr class="bg-gray-100 text-left">
+                    <th class="border p-2">Vehicle Model</th>
+                    <th class="border p-2">Vehicle Number</th>
+                    <th class="border p-2">Service Type</th>
+                    <th class="border p-2">Preferred Date</th>
+                    <th class="border p-2">Status</th>
+                    <th class="border p-2">Created At</th>
+                    <th class="border p-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr class="hover:bg-gray-50">
+                    <td class="border p-2">{{ booking.vehicle_model }}</td>
+                    <td class="px-4 py-2">{{ booking.vehicle_number }}</td>
+                    <td class="border p-2">{{ booking.get_service_type_display }}</td>
+                    <td class="border p-2">{{ booking.preferred_date }}</td>
+                    <td class="border p-2">{{ booking.status }}</td>
+                    <td class="border p-2">{{ booking.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="border p-2">
+                        {% if booking.status == 'Pending' %}
+                            <a href="{% url 'edit_booking' booking.id %}" class="text-blue-600 hover:underline mr-2">Edit</a>
+                            <a href="{% url 'delete_booking' booking.id %}" class="text-red-600 hover:underline">Delete</a>
+                        {% else %}
+                            <span class="text-gray-400 italic">Not editable</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p>No service bookings yet.</p>
+    {% endif %}
+</div>
+{%endblock%}

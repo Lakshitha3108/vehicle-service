@@ -1,0 +1,13 @@
+<!-- customer/templates/customer/delete_booking.html -->
+<h2>Are you sure you want to delete this booking?</h2>
+
+<p>Booking ID: {{ booking.id }}</p>
+<p>Vehicle Model: {{ booking.vehicle_model }}</p>
+<p>Service Type: {{ booking.service_type }}</p>
+<p>Preferred Date: {{ booking.preferred_date }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'customer-booking' %}">Cancel</a>
+</form>

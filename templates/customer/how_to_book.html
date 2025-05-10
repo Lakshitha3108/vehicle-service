@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{%block section%}
+  <div class="container mx-auto p-6">
+    <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <h1 class="text-3xl font-semibold text-center text-blue-600 mb-6">How to Book a Service</h1>
+
+      <div class="space-y-6">
+        <h2 class="text-2xl font-medium">Step 1: Sign Up or Log In</h2>
+        <p class="text-gray-700">
+          To get started, please <a href="{% url 'login' %}" class="text-blue-600 underline">log in</a>  
+          If you don't have an account yet, simply click on the "Sign Up" button and complete your registration. After signing up, you'll be automatically logged in.
+        </p>
+
+        <h2 class="text-2xl font-medium">Step 2: Access Your Dashboard</h2>
+        <p class="text-gray-700">
+          Once you're logged in, you will be taken to your dashboard where you can manage your vehicle services. On the dashboard, you'll find a button to <strong>Book a Service</strong>.
+        </p>
+
+        <h2 class="text-2xl font-medium">Step 3: Choose Your Vehicle</h2>
+        <p class="text-gray-700">
+          In your dashboard, you will be able to select the vehicle that needs servicing. Enter your vehicle's model and details, so we can match you with the appropriate services.
+        </p>
+
+        <h2 class="text-2xl font-medium">Step 4: Select a Service</h2>
+        <p class="text-gray-700">
+          Choose from a variety of services, such as oil changes, tire replacements, or general maintenance. Pick the service that best fits your needs.
+        </p>
+
+        <h2 class="text-2xl font-medium">Step 5: Pick a Date </h2>
+        <p class="text-gray-700">
+          Select your preferred date  the service. Our system will show available slots, so you can pick a time that works for you.
+        </p>
+
+        <h2 class="text-2xl font-medium">Step 6: Confirm Your Booking</h2>
+        <p class="text-gray-700">
+          Review the details of your booking, including the service, vehicle, and timing. After confirming, your booking will be scheduled, and you will receive a confirmation email with all the details.
+        </p>
+
+        <h2 class="text-2xl font-medium">Step 7:  Complete the Service and Make the Payment</h2>
+        <p class="text-gray-700">
+            Once the service provider has completed the service on your vehicle, the status will be updated to "Completed". You will receive a confirmation email with all the service details. 
+            After that, you will be able to click the "Pay Now" button to complete your payment for the service. 
+        </p>
+      </div>
+    </div>
+  </div>
+{%endblock%}
